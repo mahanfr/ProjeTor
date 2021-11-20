@@ -3,17 +3,91 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.257df0d9.chunk.css' %}">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block head %}{% endblock %}
-    <title>{% block title %}{% endblock %}</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.257df0d9.chunk.css' %}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block head %}{% endblock %}
+  <title>{% block title %}{% endblock %}</title>
+  <script src="https://kit.fontawesome.com/d6eba2497b.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+  <header>
+    <!--Tailwind navbar-->
+    <nav>
+      <div class="flex flex-row justify-between items-center w-full bg-gray-900 py-3 px-5">
+        <div id="navbar-right" class="flex flex-row items-center">
+          <div class="mr-5 flex flex-row items-center space-x-2">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 403.82 403.82">
+              <defs>
+                <style>
+                  .cls-1 {
+                    fill: #44c8f5;
+                  }
+                </style>
+              </defs>
+              <g id="Layer_2" data-name="Layer 2">
+                <g id="Icon">
+                  <circle class="cls-1" cx="92.67" cy="92.67" r="92.67" />
+                  <circle class="cls-1" cx="92.67" cy="310.91" r="92.67" />
+                  <circle class="cls-1" cx="310.91" cy="92.67" r="92.67" />
+                  <path class="cls-1 animate-spin" d="M403.82,311.15a92.67,92.67,0,0,1-185.34,0" />
+                </g>
+              </g>
+            </svg>
+            <a class="text-2xl font-mono font-bold text-gray-200" href="{% url 'index' %}">Pro[j]tor</a>
+          </div>
+          <ul class="hidden md:flex md:flex-row space-x-4 text-gray-300 font-mono">
+            <li>
+              <a href="{% url 'index' %}">Home</a>
+            </li>
+            <li>
+              <a href="{% url 'index' %}">Pricing</a>
+            </li>
+            <li>
+              <a href="{% url 'index' %}">Support</a>
+            </li>
+            <li>
+              <a href="{% url 'index' %}">About</a>
+            </li>
+          </ul>
+        </div>
+        <div class="flex flex-row space-x-3 items-center" id="navbar-left">
+          {% if user.is_Authenticated %}
+          <a class="text-white font-semibold">Login</a>
+          <a class="text-white font-semibold bg-green-600 rounded-sm px-2 py-1">Sign Up</a>
+          {% else %}
+
+          {% endif %}
+          <button id="navbar-button" class="block md:hidden"><i class="text-xl text-white fas fa-bars"></i></button>
+        </div>
+      </div>
+      <div id="navbar-hidden-menu" class="hidden md:hidden bg-gray-800 w-full pb-2 px-5">
+        <ul class="text-center text-white">
+          <li class="py-1">Home</li>
+          <li class="py-1">Pricing</li>
+          <li class="py-1">Support</li>
+          <li class="py-1">About</li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
     {% block body %}
     {% endblock %}
+  </main>
+  <footer>
+
+  </footer>
 </body>
+<script>
+  var navbar = document.getElementById("navbar-hidden-menu");
+  var navbarButton = document.getElementById("navbar-button");
+  navbarButton.addEventListener("click", function () {
+    navbar.classList.toggle("hidden");
+  });
+</script>
+{% block javascript %}{% endblock %}
 
 </html>
