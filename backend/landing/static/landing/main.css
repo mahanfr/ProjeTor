@@ -1,0 +1,10 @@
+.logo-rotate{
+    transform-origin: bottom right;
+    animation: rotate360 1.2s linear infinite;  /* animation set */
+}
+.logo-rotate:hover{
+    animation-play-state: running;              /* trigger on hover */
+}
+@keyframes rotate360 {
+    to { transform: rotate(360deg); }           
+}

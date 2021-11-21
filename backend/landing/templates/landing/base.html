@@ -5,6 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="{% static 'css/main.257df0d9.chunk.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'landing/main.css' %}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% block head %}{% endblock %}
@@ -12,7 +13,7 @@
   <script src="https://kit.fontawesome.com/d6eba2497b.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class="flex flex-col" style="min-height: 100vh;">
   <header>
     <!--Tailwind navbar-->
     <nav>
@@ -32,7 +33,7 @@
                   <circle class="cls-1" cx="92.67" cy="92.67" r="92.67" />
                   <circle class="cls-1" cx="92.67" cy="310.91" r="92.67" />
                   <circle class="cls-1" cx="310.91" cy="92.67" r="92.67" />
-                  <path class="cls-1 animate-spin" d="M403.82,311.15a92.67,92.67,0,0,1-185.34,0" />
+                  <path class="cls-1" d="M403.82,311.15a92.67,92.67,0,0,1-185.34,0" />
                 </g>
               </g>
             </svg>
@@ -54,11 +55,18 @@
           </ul>
         </div>
         <div class="flex flex-row space-x-3 items-center" id="navbar-left">
-          {% if user.is_Authenticated %}
+          {% if user.is_authenticated %}
+          <a href="#" class="text-white"><img class="w-8 h-8 border-2 border-gray-300 rounded-full"
+              src="https://randomuser.me/api/portraits/men/19.jpg" alt=""></a>
+          <span class="relative">
+            <span class=""><a class="mx-1 px-1 text-white" href="#"><i class="fas fa-bell"></i></a></span>
+            <span class="absolute top-0 right-0 bg-red-800 rounded-full w-2 h-2" style="z-index: 10;"></span>
+          </span>
+          <a href="#" class="text-white "><i class="fa fa-gear"></i></a>
+          <a href="#" class="text-white "><i class="fa fa-sign-out-alt"></i></a>
+          {% else %}
           <a class="text-white font-semibold">Login</a>
           <a class="text-white font-semibold bg-green-600 rounded-sm px-2 py-1">Sign Up</a>
-          {% else %}
-
           {% endif %}
           <button id="navbar-button" class="block md:hidden"><i class="text-xl text-white fas fa-bars"></i></button>
         </div>
@@ -77,8 +85,10 @@
     {% block body %}
     {% endblock %}
   </main>
-  <footer>
-
+  <footer class="footer mt-auto w-full bg-gray-900 py-2 border-b-2 border-gray-800">
+    <p class="text-sm text-gray-400 text-center">Copyright &copy; <a class="text-blue-600" href="#">Pro[j]tor
+      </a>2020-2021
+    </p>
   </footer>
 </body>
 <script>

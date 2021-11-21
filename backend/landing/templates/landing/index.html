@@ -1,7 +1,19 @@
 {% extends "landing/base.html" %}
+{% load static %}
 
 {% block title %}projtor - Project Management Tool{% endblock %}
 
 {% block body %}
-<h1 class="text-4xl">Welcome to Pro[J]tor</h1>
+<div class="mx-5 flex flex-col justify-center">
+  <div>
+    <h1 class="text-black text-center mt-2 font-semibold text-4xl">Project Management Service</h1>
+    <h2 class="text-black text-center mt-2 text-md">
+      pro[j]tor is a project management tool that helps you manage your projects.
+    </h2>
+    <div class="flex justify-center mt-4">
+      <a href="#" class="py-2 px-2 bg-gray-800 text-gray-100 rounded-sm">Get Started</a>
+    </div>
+  </div>
+  <img class="mx-auto w-80" src="{%static 'landing/img/3d-flame.png' %}" alt="">
+</div>
 {% endblock %}
