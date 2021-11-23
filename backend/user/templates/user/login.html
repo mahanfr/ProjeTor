@@ -1,32 +1,37 @@
 {% extends "landing/base.html" %}
 {% block title %}Login - Projtor{% endblock %}
 {% block body %}
-{% if message %}
-<div>
-  {{ message }}
-  <a href="{% url 'register' %}"> Create Account </a>
-</div>
-{% endif %}
-<div class="flex justify-center">
-  {% if user.is_authenticated %}
-  <div class="my-5 w-96 border-2 rounded-lg p-3">
-    <p class="text-center">You already logged in as {{user.user_name}}. Logout from this account first</p>
-    <div class="flex flex-row justify-between">
-      <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded" href="{%url 'logout'%}">
-        logout</a>
-      <a class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-3 rounded" href="{%url 'index'%}"> cancel</a>
-    </div>
+<div style="min-height: 85vh;">
+  {% if message %}
+  <div>
+    {{ message }}
+    <a href="{% url 'register' %}"> Create Account </a>
   </div>
-  {% else %}
-  {% load crispy_forms_tags %}
-  {% load tailwind_filters %}
-  <form class="my-5 w-96 border-2 rounded-lg p-3" action="{% url 'login' %}" method="post">
-    <h1 class="text-lg my-2 text-center"> Login </h1>
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Login</button>
-    <p>You don't have an account? <a class="text-blue-700" href="{% url 'register' %}">Register</a></p>
-  </form>
   {% endif %}
+  <div class="flex justify-center">
+    {% if user.is_authenticated %}
+    <div class="my-5 w-96 bg-gray-200 border-2 rounded-lg p-3">
+      <p class="text-center">You already logged in as {{user.user_name}}. Logout from this account first</p>
+      <div class="flex flex-row justify-between">
+        <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded" href="{%url 'logout'%}">
+          logout</a>
+        <a class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-3 rounded" href="{%url 'index'%}">
+          cancel</a>
+      </div>
+    </div>
+    {% else %}
+    {% load crispy_forms_tags %}
+    {% load tailwind_filters %}
+    <form class="my-5 w-96 bg-gray-200 border-2 rounded-lg p-3" action="{% url 'login' %}" method="post">
+      <h1 class="text-lg font-semibold my-2 text-center"> Login </h1>
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Login</button>
+      <p class="text-sm mt-2">You don't have an account? <a class="text-blue-700"
+          href="{% url 'register' %}">Register</a>
+      </p>
+    </form>
+    {% endif %}
+  </div>
 </div>
 {% endblock %}

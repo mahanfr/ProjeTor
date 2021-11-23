@@ -44,13 +44,13 @@
               <a href="{% url 'index' %}">Home</a>
             </li>
             <li>
-              <a href="{% url 'index' %}">Pricing</a>
+              <a href="{% url 'pricing' %}">Pricing</a>
             </li>
             <li>
-              <a href="{% url 'index' %}">Support</a>
+              <a href="{% url 'support' %}">Support</a>
             </li>
             <li>
-              <a href="{% url 'index' %}">About</a>
+              <a href="{% url 'about' %}">About</a>
             </li>
           </ul>
         </div>
@@ -63,25 +63,25 @@
             <span class="absolute top-0 right-0 bg-red-800 rounded-full w-2 h-2" style="z-index: 10;"></span>
           </span>
           <a href="#" class="text-white "><i class="fa fa-gear"></i></a>
-          <a href="#" class="text-white "><i class="fa fa-sign-out-alt"></i></a>
+          <a href="{% url 'logout' %}" class="text-white "><i class="fa fa-sign-out-alt"></i></a>
           {% else %}
-          <a class="text-white font-semibold">Login</a>
-          <a class="text-white font-semibold bg-green-600 rounded-sm px-2 py-1">Sign Up</a>
+          <a class="text-white font-semibold" href="{% url 'login' %}">Login</a>
+          <a class="text-white font-semibold bg-green-600 rounded-sm px-2 py-1" href="{% url 'register' %}">Sign Up</a>
           {% endif %}
           <button id="navbar-button" class="block md:hidden"><i class="text-xl text-white fas fa-bars"></i></button>
         </div>
       </div>
       <div id="navbar-hidden-menu" class="hidden md:hidden bg-gray-800 w-full pb-2 px-5">
         <ul class="text-center text-white">
-          <li class="py-1">Home</li>
-          <li class="py-1">Pricing</li>
-          <li class="py-1">Support</li>
-          <li class="py-1">About</li>
+          <li class="py-1"><a href="{% url 'index' %}">Home</a></li>
+          <li class="py-1"><a href="{% url 'pricing' %}">Pricing</a></li>
+          <li class="py-1"><a href="{% url 'support' %}">Support</a></li>
+          <li class="py-1"><a href="{% url 'about' %}">About</a></li>
         </ul>
       </div>
     </nav>
   </header>
-  <main>
+  <main class="bg-purple-700">
     {% block body %}
     {% endblock %}
   </main>

@@ -1,56 +1,6 @@
 {% extends "landing/base.html" %}
-{% load static %}
-
-{% block title %}projtor - Project Management Tool{% endblock %}
-
+{% block title %}Login - Projtor{% endblock %}
 {% block body %}
-<section class="my-5 mx-5 flex flex-col-reverse md:flex-row justify-center md:items-center min-h-screen">
-  <div class="mx-auto md:w-6/12">
-    <h1 class="text-white text-center mt-2 font-semibold text-4xl">Project Management Service</h1>
-    <p class="text-white text-center mt-2 text-md">
-      pro[j]tor is a project management tool that helps you manage your projects. It is a web application that allows
-      you to create, manage and track your projects.
-      get started by registering or logging in and adding your organization.
-    </p>
-    <div class="flex justify-center mt-4">
-      <a href="#" class="py-2 px-2 bg-gray-800 text-gray-100 rounded-sm">Get Started</a>
-    </div>
-  </div>
-  <img class="mx-auto sm:w-3/6" src="{%static 'landing/img/brainstorm.svg' %}" alt="">
-</section>
-<section class="bg-gray-800">
-  <div class="pt-5">
-    <h2 class="text-center text-gray-100 font-semibold text-2xl">Features</h2>
-    <div class="flex flex-wrap justify-center mt-4 space-x-4 pb-10">
-      <div class="w-full md:w-1/4 p-4 rounded-md bg-gray-700 hover:bg-gray-800">
-        <div class="flex flex-col items-center">
-          <img src="{% static 'landing/img/icons8-box.svg' %}" alt="" class="w-24 h-24">
-          <h3 class="text-center text-gray-100 font-semibold text-xl mt-4">Organize</h3>
-          <p class="text-center text-gray-100 text-sm">
-            Organize your projects and tasks with a calendar.
-          </p>
-        </div>
-      </div>
-      <div class="w-full md:w-1/4 p-4 rounded-md bg-gray-700 hover:bg-gray-800">
-        <div class="flex flex-col items-center">
-          <img src="{% static 'landing/img/icons8-manage.svg' %}" alt="" class="w-24 h-24">
-          <h3 class="text-center text-gray-100 font-semibold text-xl mt-4">Manage</h3>
-          <p class="text-center text-gray-100 text-sm">
-            Manage your projects and tasks with a calendar.
-          </p>
-        </div>
-      </div>
-      <div class="w-full md:w-1/4 p-4 rounded-md bg-gray-700 hover:bg-gray-800">
-        <div class="flex flex-col items-center">
-          <img src="{% static 'landing/img/icons8-event.svg' %}" alt="" class="w-24 h-24">
-          <h3 class="text-center text-gray-100 font-semibold text-xl mt-4">Track</h3>
-          <p class="text-center text-gray-100 text-sm">
-            Track your projects and tasks with a calendar.
-          </p>
-        </div>
-      </div>
-    </div>
-</section>
 <section class="mx-6">
   <!--Pricing-->
   <div class="py-5">
