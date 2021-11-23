@@ -4,12 +4,12 @@
 {% load crispy_forms_tags %}
 {% load tailwind_filters %}
 <div class="flex justify-center">
-  <form class="my-5 w-96 border-2 rounded-lg p-3" method="post">
-    <h1 class="text-lg my-2 text-center"> Sign Up </h1>
+  <form class="my-5 w-96 border-2 rounded-lg p-3 bg-gray-200" method="post">
+    <h1 class="font-semibold text-lg my-2 text-center">Sign Up</h1>
     {% csrf_token %}
     {{ form | crispy}}
     <button type="submit" class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Sign up</button>
-    <p>Already have an Account? <a class="text-blue-700" href="{% url 'login' %}">Login</a></p>
+    <p class="mt-2 text-sm">Already have an Account? <a class="text-blue-700" href="{% url 'login' %}">Login</a></p>
   </form>
 </div>
 {% endblock %}
