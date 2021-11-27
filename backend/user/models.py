@@ -54,11 +54,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['phone_number', 'user_name']
 
-    def save(self, *args, **kwargs) -> None:
-        s = super().save(*args, **kwargs)
-        Profile.objects.create(user=self)
-        return s
-
 
 class Profile(models.Model):
     user = models.OneToOneField('user.User', on_delete=models.CASCADE)
@@ -67,7 +62,7 @@ class Profile(models.Model):
     company = models.ForeignKey(
         'company.Company', on_delete=models.SET_NULL, null=True, blank=True)
     profile_picture = models.ImageField(
-        upload_to='profile_picture/', blank=True, null=True, default='profile_pictures/default.png')
+        upload_to='profile_picture/', blank=True, null=True, default='profile_picture/default.png')
 
     def __str__(self):
         return self.user.user_name
