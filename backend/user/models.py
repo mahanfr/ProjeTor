@@ -2,10 +2,13 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
-from company.models import Company, Position
-
+from PIL import Image
+import os
+import uuid
 
 # This is a class for managing our custom user authentication
+
+
 class CustomUserManager(BaseUserManager):
     def create_superuser(self, email, user_name, phone_number, password, **other_fields):
         other_fields.setdefault('is_staff', True)
@@ -54,10 +57,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['phone_number', 'user_name']
 
-    def save(self, *args, **kwargs) -> None:
-        s = super().save(*args, **kwargs)
-        Profile.objects.create(user=self)
-        return s
+
+def get_file_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = "%s.%s" % (uuid.uuid4(), ext)
+    return os.path.join('profile_picture', filename)
 
 
 class Profile(models.Model):
@@ -67,7 +71,19 @@ class Profile(models.Model):
     company = models.ForeignKey(
         'company.Company', on_delete=models.SET_NULL, null=True, blank=True)
     profile_picture = models.ImageField(
-        upload_to='profile_picture/', blank=True, null=True, default='profile_pictures/default.png')
+        upload_to=get_file_path, blank=True, null=True, default='profile_picture/default.png')
 
     def __str__(self):
         return self.user.user_name
+
+    def save(self, *args, **kwargs):
+        if not self.profile_picture:
+            self.profile_picture = 'profile_picture/default.png'
+        super().save(*args, **kwargs)
+        if self.profile_picture and not 'default.png' in self.profile_picture.path:
+            img = Image.open(self.profile_picture.path)
+
+            if img.height > 512 or img.width > 512:
+                output_size = (512, 512)
+                img.thumbnail(output_size)
+                img.save(self.profile_picture.path)

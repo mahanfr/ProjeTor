@@ -10,7 +10,7 @@ class UserConfig(UserAdmin):
     search_fields = ('email', 'user_name', 'phone_number')
     list_filter = ('is_active', 'is_staff', 'is_superuser')
     ordering = ('-created_at',)
-    list_display = ('email', 'user_name', 'phone_number',
+    list_display = ("profile", 'email', 'user_name', 'phone_number',
                     'is_active', 'is_staff')
 
     fieldsets = (
