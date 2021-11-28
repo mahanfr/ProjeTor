@@ -1,3 +1,9 @@
 from django.shortcuts import render
+from company.forms import CompanyCreationForm
 
-# Create your views here.
+
+def company_view(request):
+    context = {
+        'company_creation_form': CompanyCreationForm(),
+    }
+    return render(request, 'company/company.html', context)
