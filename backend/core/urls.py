@@ -8,6 +8,7 @@ urlpatterns = [
     path('', include('landing.urls')),
     path('user/', include('user.urls')),
     path('company/', include('company.urls')),
+    path('projects/', include('project.urls'))
 ]
 
 if settings.DEBUG == True:

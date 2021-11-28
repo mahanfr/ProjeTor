@@ -11,7 +11,8 @@ class Company(models.Model):
     phone = models.CharField(max_length=20)
     email = models.EmailField(max_length=100)
     website = models.URLField()
-    logo = models.ImageField(upload_to='company_logo', blank=True)
+    logo = models.ImageField(upload_to='company_logo/',
+                             blank=True, null=True, default='default.jpg')
     admin = models.ForeignKey("user.User", on_delete=models.CASCADE)
 
     class Meta:
