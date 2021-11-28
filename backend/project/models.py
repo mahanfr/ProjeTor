@@ -14,7 +14,7 @@ class Project(models.Model):
     state = models.CharField(
         max_length=100, choices=enums.ProjectState.choices, default=enums.ProjectState.WORKING)
     banner = models.ImageField(
-        upload_to='project_banner', blank=True, null=True, default='default.jpg')
+        upload_to='project_banner/', blank=True, null=True, default='default.jpg')
     manager = models.ForeignKey(
         'user.Profile', on_delete=models.SET_NULL, null=True, blank=True)
     start_date = models.DateField(default=timezone.now)
