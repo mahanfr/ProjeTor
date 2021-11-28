@@ -6,7 +6,7 @@ from company.models import Company
 User = get_user_model()
 
 
-class CompanyCreationForm(forms.Form):
+class CompanyCreationForm(forms.ModelForm):
     """
     Form for creating a new company
     """
@@ -17,7 +17,8 @@ class CompanyCreationForm(forms.Form):
     address = forms.CharField(label='Company Address', max_length=100)
     city = forms.CharField(label='Company City', max_length=100)
     website = forms.URLField(label='Company Website', max_length=100)
-    logo = forms.ImageField(label='Company Logo', max_length=100)
+    logo = forms.ImageField(label='Company Logo',
+                            max_length=100, required=False)
 
     class Meta:
         model = Company
