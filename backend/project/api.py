@@ -1,10 +1,10 @@
-from rest_framework.generics import ListAPIView
+from rest_framework.viewsets import ModelViewSet
 from .serializers import TaskSerializer, ProjectSerializer
 from .models import Task,  Project
 from rest_framework.exceptions import NotAuthenticated
 
 
-class TaskList(ListAPIView):
+class TaskViewSet(ModelViewSet):
     serializer_class = TaskSerializer
 
     def get_queryset(self):
@@ -18,7 +18,7 @@ class TaskList(ListAPIView):
             return Task.objects.filter(project__in=projects)
 
 
-class ProjectList(ListAPIView):
+class ProjectViewSet(ModelViewSet):
     serializer_class = ProjectSerializer
 
     def get_queryset(self):
