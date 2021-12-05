@@ -1,0 +1,54 @@
+{% extends "landing/base.html" %}
+{% load static %}
+{% block title %}projtor - Join or Create a company{% endblock %}
+{% block body %}
+{% load crispy_forms_tags %}
+{% load tailwind_filters %}
+<div class="min-h-screen">
+    <section class="flex justify-center ">
+        <div class="mt-10 pb-8 flex flex-col justify-center bg-gray-100 px-4 rounded-sm w-11/12 md:w-1/2">
+            {% csrf_token %}
+            <h1 class="my-5 text-xl font-semibold text-gray-800 text-center">Create or join an organization</h1>
+            <button id="create-from-hidden-btn"
+                class="py-1 my-2 mx-20 text-white bg-gray-400 ring-4 font-bold ring-gray-300 rounded-sm">Create</button>
+            <form id="create_from_btn" action="{% url 'company-create' %}" method="post" class="mt-4 hidden">
+                {% csrf_token %}
+                {{ company_creation_form|crispy }}
+                <button type="submit"
+                    class="bg-purple-700 hover:bg-purple-600 text-white font-bold py-2 px-8 my-2 mx-auto rounded">Create
+                    Organization</button>
+            </form>
+            <button id="join-from-hidden-btn"
+                class="py-1 my-2 mx-20 text-white bg-green-400 ring-4 font-bold ring-green-300 rounded-sm">Join</button>
+            <form id="join_from_btn" action="{% url 'company-join' %}" method="post" class="mt-4 hidden">
+                {% csrf_token %}
+                <label for="id_name" class="block text-gray-700 text-sm font-bold mb-2">
+                    Company Name<span class="asteriskField">*</span> </label> <input type="text" name="name"
+                    maxlength="100"
+                    class="textinput block px-4 text-gray-700 w-full border-gray-300 border focus:outline-none appearance-none bg-white leading-normal py-2 rounded-lg"
+                    required id="id_name">
+                </label>
+                <button type="submit"
+                    class="bg-purple-700 hover:bg-purple-600 text-white font-bold py-2 px-8 my-2 mx-auto rounded">Send a
+                    Request</button>
+            </form>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    var create_from_hidden_btn = document.getElementById("create-from-hidden-btn");
+    var join_from_hidden_btn = document.getElementById("join-from-hidden-btn");
+
+    var create_from = document.getElementById("create_from_btn");
+    var join_from = document.getElementById("join_from_btn");
+    create_from_hidden_btn.addEventListener("click", function () {
+        create_from.classList.toggle("hidden");
+    });
+    join_from_hidden_btn.addEventListener("click", function () {
+        join_from.classList.toggle("hidden");
+    });
+</script>
+{% endblock %}
