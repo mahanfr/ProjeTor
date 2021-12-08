@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from company.forms import CompanyCreationForm
-from company.models import Company
+from company.models import Company, JoinRequest
 
 
 def company_view(request):
@@ -20,4 +20,13 @@ def company_create(request):
             instance.save()
         else:
             print(form.errors)
+    return redirect('company-view')
+
+
+def company_join(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        desc = request.POST.get('description')
+        JoinRequest.objects.create(
+            company=Company.objects.get(name=name), description=desc, user=request.user)
     return redirect('company-view')

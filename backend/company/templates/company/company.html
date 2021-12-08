@@ -23,11 +23,17 @@
             <form id="join_from_btn" action="{% url 'company-join' %}" method="post" class="mt-4 hidden">
                 {% csrf_token %}
                 <label for="id_name" class="block text-gray-700 text-sm font-bold mb-2">
-                    Company Name<span class="asteriskField">*</span> </label> <input type="text" name="name"
-                    maxlength="100"
+                    Company Name<span class="asteriskField">*</span>
+                </label>
+                <input type="text" name="name" maxlength="100"
                     class="textinput block px-4 text-gray-700 w-full border-gray-300 border focus:outline-none appearance-none bg-white leading-normal py-2 rounded-lg"
                     required id="id_name">
+                <label for="id_name" class="block text-gray-700 text-sm font-bold mb-2">
+                    Description
                 </label>
+                <input type="text" name="description" maxlength="100"
+                    class="textinput block px-4 text-gray-700 w-full border-gray-300 border focus:outline-none appearance-none bg-white leading-normal py-2 rounded-lg"
+                    id="id_description">
                 <button type="submit"
                     class="bg-purple-700 hover:bg-purple-600 text-white font-bold py-2 px-8 my-2 mx-auto rounded">Send a
                     Request</button>

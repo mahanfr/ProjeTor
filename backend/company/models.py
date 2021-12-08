@@ -48,4 +48,4 @@ class JoinRequest(models.Model):
         'company.Position', on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.company.name}-{self.user.username}'
+        return f'{self.company.name}-{self.user.user_name}'
