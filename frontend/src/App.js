@@ -1,18 +1,35 @@
 import './index.css'
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import SideMenu from './components/SideMenu';
+import React from 'react';
+import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
+import Projects from './pages/Projects';
+import Team from './pages/Team';
+import Time from './pages/Time';
+import SideMenu from './components/Sidemenu';
 
 function App() {
   return (
-    <main>
+    
+     <>
+     <Router>
       <Navbar />
-      <div className="min-h-screen flex flex-row">
         <SideMenu />
-        <h1 className="text-2xl">PRO[J]TOR APP HOME PAGE</h1>
-      </div>
-      <Footer />
-    </main>
+        <Routes>
+        <Route path='/' exact component={Home} />
+          <Route path='/dashboard' component={<Dashboard />} />
+          <Route path='/projects' component={<Projects />} />
+          <Route path='/team' component={<Team />} />
+          <Route path='/time' component={<Time />} />
+          </Routes>
+       <Footer />
+     </Router>
+    </>
+    
+    
   );
 }
 
