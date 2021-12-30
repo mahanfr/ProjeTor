@@ -20,6 +20,9 @@ class Project(models.Model):
     start_date = models.DateField(default=timezone.now)
     end_date = models.DateField()
 
+    def getTeams(self):
+        return self.team.all()
+
     def __str__(self):
         return self.name
 

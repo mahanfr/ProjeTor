@@ -1,0 +1,61 @@
+{% extends "landing/base.html" %}
+{% load static %}
+
+{% block title %}projtor - Project Management Tool{% endblock %}
+
+{% block body %}
+{% load crispy_forms_tags %}
+{% load tailwind_filters %}
+<div class="flex flex-row min-h-screen">
+  <div class="bg-gray-200">
+    <h3 class="text-center text-xl font-medium mx-3 my-3">Create Project</h3>
+    <form class="grid px-5 bg-gray-200" action="{% url 'project_create' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ projectCreationForm|crispy }}
+      <button class="p-2 bg-green-600 my-3 text-white" type="submit">Create</button>
+    </form>
+  </div>
+  <div class="flex flex-row mx-10 w-full pt-2">
+    {% for project in projects %}
+    <div class="rounded-md bg-gray-700 mt-10 text-white w-full h-44">
+      <div class="bg-gray-800 flex flex-row justify-between py-3 px-5">
+        <div class="flex flex-row space-x-2 items-center">
+          <i class="far fa-circle"></i>
+          <h3 class="text-lg font-semibold font-mono">{{ project.name }}</h3>
+        </div>
+        <p class="opacity-70">{{ project.description }}</p>
+      </div>
+      <div class="px-5 flex flex-row-reverse justify-evenly">
+        <div class="project-card-body-left">
+          <div class="project-card-body-left-top">
+            <h4 class="font-semibold">Project Manager:</h4>
+            <p>{{ project.manager }}</p>
+          </div>
+          <div class="mt-5">
+            <a class="bg-green-600 rounded-sm p-2" href="{% url 'project_detail' project.id %}">View Project</a>
+          </div>
+        </div>
+        <div class="project-card-body-right">
+          <div class="project-card-body-right-top">
+            <h4 class="font-semibold">Start Date:</h4>
+            <p>{{ project.start_date }}</p>
+          </div>
+          <div class="project-card-body-right-bottom">
+            <h4 class="font-semibold">End Date:</h4>
+            <p>{{ project.end_date }}</p>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-semibold">Teams:</h4>
+          <ul>
+            {% for team in project.getTeams %}
+            <li>{{ team.name }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

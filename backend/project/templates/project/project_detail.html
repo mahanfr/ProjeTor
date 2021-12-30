@@ -1,0 +1,31 @@
+{% extends "landing/base.html" %}
+{% load static %}
+
+{% block title %}projtor - Project Management Tool{% endblock %}
+
+{% block body %}
+<!--Project Detail-->
+<div class="min-h-screen">
+    <div class="bg-gray-700 w-full px-10">
+        <!--Projects detail-->
+        <h4 class="text-white text-2xl font-mono font-semibold" >{{ project.name }} Project</h4>
+        <h4 class="text-gray-300">{{ project.description }}</h4>
+        <h4 class="text-gray-300">{{ project.start_date }}</h4>
+        <h4 class="text-gray-300">{{ project.end_date }}</h4>
+        <h4 class="text-gray-300">State: {{ project.state }}</h4>
+        <h4 class="text-gray-300">Manager: {{ project.manager }}</h4>
+
+    </div>
+    <div>
+        {% for task in tasks %}
+        <div>
+            {{task.title}}
+            {{task.description}}
+            {{task.start_date}}
+            {{task.end_date}}
+            {{task.assigned_to}}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
