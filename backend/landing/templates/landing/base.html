@@ -57,7 +57,7 @@
         </div>
         <div class="flex flex-row space-x-3 items-center" id="navbar-left">
           {% if user.is_authenticated %}
-          <a href="#" class="text-white"><img class="w-8 h-8 border-2 border-gray-300 rounded-full"
+          <a href="{% url 'profile' %}" class="text-white"><img class="w-8 h-8 border-2 border-gray-300 rounded-full"
               src="{{user.profile.profile_picture.url}}" alt=""></a>
           <span class="relative">
             <span class=""><a class="mx-1 px-1 text-white" href="#"><i class="fas fa-bell"></i></a></span>
@@ -87,7 +87,7 @@
     {% endblock %}
   </main>
   <footer class="footer mt-auto w-full bg-gray-900 py-2 border-b-2 border-gray-800">
-    <p class="text-sm text-gray-400 text-center">Copyright &copy; <a class="text-blue-600" href="#">Pro[j]tor
+    <p class="text-sm text-gray-400 text-center">Copyright &copy; <a class="text-blue-600" href="{% url 'index' %}">Pro[j]tor
       </a>2020-2021
     </p>
   </footer>
