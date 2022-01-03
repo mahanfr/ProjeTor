@@ -4,28 +4,61 @@
 {% block title %}projtor - Project Management Tool{% endblock %}
 
 {% block body %}
+{% load crispy_forms_tags %}
+{% load tailwind_filters %}
 <!--Project Detail-->
-<div class="min-h-screen">
-    <div class="bg-gray-700 w-full px-10">
-        <!--Projects detail-->
-        <h4 class="text-white text-2xl font-mono font-semibold" >{{ project.name }} Project</h4>
-        <h4 class="text-gray-300">{{ project.description }}</h4>
-        <h4 class="text-gray-300">{{ project.start_date }}</h4>
-        <h4 class="text-gray-300">{{ project.end_date }}</h4>
-        <h4 class="text-gray-300">State: {{ project.state }}</h4>
-        <h4 class="text-gray-300">Manager: {{ project.manager }}</h4>
-
+<div class="flex flex-row min-h-screen">
+    <div class="bg-gray-200 px-5 py-5">
+        <h3 class=" mb-3 text-xl text-center">Create a Task</h3>
+        <form class="" action="{% url 'task_create' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ taskCreationForm|crispy }}
+            <input id="project" name="project" value="{{ project.id }}" type="text" hidden>
+            <button class="bg-green-600 text-white rounded-sm py-2 px-4 w-full" type="submit">Create</button>
+        </form>
     </div>
-    <div>
-        {% for task in tasks %}
-        <div>
-            {{task.title}}
-            {{task.description}}
-            {{task.start_date}}
-            {{task.end_date}}
-            {{task.assigned_to}}
+    <div class="w-full">
+        
+        <div class="bg-gray-700 px-10 py-5">
+            <!--Projects detail-->
+            <div class="flex felx-row space-x-4 items-center">
+                <img class="w-48 h-48 rounded-md" src="{{ project.banner.url }}" style="object-fit: cover">
+                <div>
+                    <h4 class="text-white text-2xl font-mono font-semibold" >{{ project.name }} Project</h4>
+                    <h4 class="text-gray-300">{{ project.description }}</h4>
+                    <h4 class="text-gray-300">Date Started: {{ project.start_date }}</h4>
+                    <h4 class="text-gray-300">Deadline: {{ project.end_date }}</h4>
+                    <h4 class="text-gray-300">State: {{ project.state }}</h4>
+                    <h4 class="text-gray-300">Manager: {{ project.manager }}</h4>
+                    <div class="flex flex-row space-x-2 mt-3">
+                        <a href=""><i class="fa fa-edit text-xl text-green-500"></i></a>
+                        <a href=""><i class="fa fa-eraser text-xl text-red-500"></i></a>
+                    </div>
+                </div>
+            </div>
+    
         </div>
-        {% endfor %}
+        <div class="grid grid-cols-3 gap-3 m-5">
+            {% for task in tasks %}
+            <div class="bg-blue-200 rounded-md">
+                <div class="rounded-t-md bg-gray-900 text-gray-100 w-full p-3">
+                    <h5>{{task.title}}</h5>
+                </div>
+                <div class="p-3">
+                    <p>{{task.description}}</p>
+                    <p class="font-semibold">Started at: {{task.start_date}}</p>
+                    <p class="font-semibold">Deadline: {{task.end_date}}</p>
+                    <p class="font-semibold">Assigned to: {{task.assigned_to}}</p>
+                </div>
+                <div class="w-full flex flex-row justify-between rounded-b-md p-2 bg-gray-700 text-gray-100">
+                    <p>State: {{task.state}}</p>
+                    <a href="{% url 'task_detail' task.id %}" class="text-blue-500">Details</a>
+                </div>
+                
+            </div>
+            
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}
