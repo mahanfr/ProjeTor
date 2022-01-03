@@ -1,9 +1,13 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from company.forms import CompanyCreationForm
 from company.models import Company, JoinRequest
 
 
+@login_required
 def company_view(request):
+    if request.user.profile.company:
+        return redirect('project_index')
     context = {
         'company_creation_form': CompanyCreationForm(),
     }
