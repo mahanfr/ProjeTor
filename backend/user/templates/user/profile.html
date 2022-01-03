@@ -1,0 +1,31 @@
+{% extends "landing/base.html" %}
+{% block body %}
+<div>
+    <div>
+        <p>your requests</p>
+        {% for req in user_request %}
+            <p>{{req}}</p>
+        {% endfor %}
+    </div>
+    {% if request.user.profile.admin == request.user %}
+    <div>
+        <p>company requests</p>    
+        {% for req in user_request %}
+            <p>{{req}}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <div>
+        <p>tasks</p>    
+        {% for task in tasks %}
+            <p>{{task}}</p>
+        {% endfor %}
+    </div>
+    <div>
+        <p>project</p>    
+        {% for project in projects %}
+            <p>{{project}}</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock%}
