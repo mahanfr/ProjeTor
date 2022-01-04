@@ -7,7 +7,7 @@
             <p>{{req}}</p>
         {% endfor %}
     </div>
-    {% if request.user.profile.admin == request.user %}
+    {% if request.user.profile.company.admin == request.user %}
     <div>
         <p>company requests</p>    
         {% for req in user_request %}
